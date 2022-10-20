@@ -1,2 +1,3 @@
-./ais-back/node_modules
-./ais-web/node_modules
+.gitignore
+ais-back/node_modules
+ais-web/node_modules
