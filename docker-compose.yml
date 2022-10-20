@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment: 
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: model_ais
+  
+    volumes: 
+        - ./init:/docker-entrypoint-initdb.d
+      
+  web:
+    build: ais-web/
+    ports:
+      - 3000:3000
+
+  api:
+    build: ais-back/
+    ports:
+      - 9999:9999
+    depends_on:
+      - db
+
+volumes:
+  init:
+
+  
